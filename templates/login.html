@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Demo</title>
+
+	<style type="text/css">
+		
+		.shypzheader{
+			border: 1px solid red;
+			text-align: center;
+		}
+
+		div#shypzbody{
+
+			<!--border: 1px solid blue;-->
+		}
+
+		form{
+
+			
+			width: 100%;
+		}
+
+		form div{
+			
+			width: 30%;	
+			position: relative;
+			left: 30%;
+			text-align: center;
+			padding: 70px;
+
+		}
+	</style>
+</head>
+<body>
+
+
+	<header class="shypzheader">
+		<div>
+			<h1>Login Demo</h1>
+		</div>
+	</header>
+
+	<div id="shypzbody">
+         
+         	<form action = "/dologin" method = "post">
+         	    <div>
+			         Enter Name: <input type = "text" name = "nm" />
+			         <br/>
+			         Enter Password: <input type="password" name="pass">
+			         <br/>
+			         <input type = "submit" value = "submit" />
+			    </div>
+	      	</form>
+	      	
+	      	<p>Not a Member</p>
+	      	<a href="/signup">Register</a>
+
+       
+	</div>
+
+</body>
+</html>

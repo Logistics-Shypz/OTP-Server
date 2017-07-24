@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login Demo</title>
+	 <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/shypz.otp.css')}}">
+	<style type="text/css">
+			*{
+
+				box-sizing: border-box;
+			}
+
+			body{
+
+				background-color: red;
+			}
+			
+			
+			
+			/*Media queries */
+			@media screen and (min-width: 480px){
+
+				body{
+					background-color: #ffffff;
+				}
+			}
+		
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+	<script type="text/javascript">
+	
+			$(document).ready(function(){
+				
+				var username = '{{username}}';
+
+				if (username == "guest"){
+					$('#logoutBtn').css('display','none')
+					$('#signupbtn').css('display','true')
+					$('#loginBtn').text('Login')
+				}else{
+					$('#logoutBtn').css('display','true')
+					$('#signupbtn').css('display','none')
+					$('#loginBtn').text('Hi ' + username)
+				}
+				
+				$("#loginBtn").click(function(){
+
+
+				});
+				
+				
+
+				
+			});
+			
+	</script>
+	
+	
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="position: relative;height: 100px;margin: 0px;padding: 0px;">
+	  <div class="container-fluid" style="margin-top: 25px;">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Shypz</a>
+	    </div>
+	    <ul class="nav navbar-nav navbar-right">
+	      <li><a id="signupbtn" href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	      <li><a id="loginBtn" href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      <li><a id="logoutBtn" href="/logout">Log out</a></li>
+	    </ul>
+	  </div> <!-- End of div container -->
+	</nav><!--End of Nav Bar -->
+
+
+	<div class="container-fluid" style="margin-top:0px;height:500px;">
+			Content
+
+	</div>
+
+	<div class="container-fluid" style="height: 30px;">
+			Footer
+
+	</div>
+
+
+	
+</body>
+</html>

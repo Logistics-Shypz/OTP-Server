@@ -1,0 +1,6 @@
+ShypzCustomLogger 07/23/2017 03:13:15 PM INFO shypzOTPReceiver.py shypzOTPReceiver <module> 35  [*] Waiting for messages. To exit press CTRL+C
+ShypzCustomLogger 07/23/2017 03:14:46 PM INFO shypzOTPReceiver.py shypzOTPReceiver <module> 35  [*] Waiting for messages. To exit press CTRL+C
+ShypzCustomLogger 07/23/2017 03:15:36 PM INFO shypzOTPReceiver.py shypzOTPReceiver callback 29 Message sent to User mobile 9739325635with output3767776f6f4a393939373539
+ShypzCustomLogger 07/23/2017 03:17:17 PM INFO shypzOTPReceiver.py shypzOTPReceiver <module> 36  [*] Waiting for messages. To exit press CTRL+C
+ShypzCustomLogger 07/23/2017 03:18:25 PM INFO shypzOTPReceiver.py shypzOTPReceiver callback 30 Message sent to User mobile 9739325635 with outputsent
+ShypzCustomLogger 07/24/2017 11:56:36 PM INFO shypzOTPReceiver.py shypzOTPReceiver callback 30 Message sent to User mobile 9739325635 with outputsent
