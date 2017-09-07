@@ -1,0 +1,246 @@
+{% include 'header.html' %}
+<body>
+
+    {% include 'navigation.html'%}
+<div class="orderContent">
+    
+    <div class="container orderFormContent clearfix" ng-controller='orderBeginController'>
+        <div class="orderHeader clearfix">            
+            <div class="orderIcons clearfix">
+                <div class="orderStatusIcon green">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>                   
+                </div>
+                <div class="orderBarImg">
+                    <img src="{{url_for('static',filename='assets/images/gray_horizontal.png')}}" alt="horizontal bar"/>
+                </div>
+                <div class="orderStatusIcon">
+                    <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>                    
+                </div>
+                <div class="orderBarImg">
+                    <img src="{{url_for('static',filename='assets/images/gray_horizontal.png')}}" alt="horizontal bar"/>
+                </div>
+                <div class="orderStatusIcon">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="orderIconsText">
+                <div class="orderStatusText green">
+                    Enter House &amp; Location Details       
+                </div>
+                <div class="orderStatusText textPaddLeft">
+                    Select articles to be moved      
+                </div>
+                <div class="orderStatusText textPaddLeft">
+                    Enter contact details      
+                </div>
+            </div>
+        </div> 
+        
+        <div class="orderStep1 orderSteps clearfix">
+            <form name="orderStep1">
+                <div class="row" style="width:50%;margin:0 auto">
+                    <div class="col-md-6">
+                        <span class="formLabel">Probable Shifting Date:</span>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="shiftingDatepicker" ng-model="locationDetails.shiftingDate" required>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pull-left">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Source City:</span>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" id="sourceCity" ng-model="locationDetails.sourceCity" ng-options="city for city in sourceCityNames" required>                                                   
+                                </select>
+                            </div>                    
+                        </div>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Destination City:</span>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" id="destinationCity" ng-model="locationDetails.destinationCity" ng-options="city for city in destCityNames" required>                                                   
+                                </select>
+                            </div>                    
+                        </div>
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pull-left">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Source Property:</span>
+                            </div>
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="sourcePropApartment" ng-model="locationDetails.sourcePropType" value="apartment" />
+                                <label for="sourcePropApartment"></label><br/>Apartment
+                            </div>  
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="sourcePropBungalow" ng-model="locationDetails.sourcePropType" value="bungalow" />
+                                <label for="sourcePropBungalow"></label><br/>Bungalow
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Destination Property:</span>
+                            </div>
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="destPropApartment" ng-model="locationDetails.destPropType" value="apartment" required />
+                                <label for="destPropApartment"></label><br/>Apartment
+                            </div>  
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="destPropBungalow" ng-model="locationDetails.destPropType" value="bungalow" required />
+                                <label for="destPropBungalow"></label><br/>Bungalow
+                            </div>                    
+                        </div>
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pull-left">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Floor Number</span>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" ng-disabled="locationDetails.sourcePropType == 'bungalow'" min="0" class="form-control" placeholder="Floor Number" ng-model="locationDetails.sourceFloorNum"  />
+                            </div>                    
+                        </div>
+                    </div>
+                    <div class="col-md-6 pull-right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Floor Number</span>
+                            </div>
+                             <div class="col-md-6">
+                                <input type="number" ng-disabled="locationDetails.destPropType == 'bungalow'" min="0" class="form-control" placeholder="Floor Number" ng-model="locationDetails.destFloorNum" />
+                            </div>                   
+                        </div>
+                    </div> 
+                </div>
+                <div class="row" >
+                    <div class="col-md-6 pull-left">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Elevator at Source Location</span>
+                            </div>
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="sourceElevatorYes" ng-model="locationDetails.sourceElevator" value="yes" required />
+                                <label for="sourceElevatorYes"></label><br/>Yes
+                            </div>  
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="sourceElevatorNo" ng-model="locationDetails.sourceElevator" value="no" required/>
+                                <label for="sourceElevatorNo"></label><br/>No
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="col-md-6 pull-right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Elevator at Destination</span>
+                            </div>
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="destElevatorYes" ng-model="locationDetails.destElevator" value="yes" required />
+                                <label for="destElevatorYes"></label><br/>Yes
+                            </div>  
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="destElevatorNo" ng-model="locationDetails.destElevator" value="no" required />
+                                <label for="destElevatorNo"></label><br/>No
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pull-left">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Opt for Packing</span>
+                            </div>
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="sourcePackingYes" ng-model="locationDetails.sourcePacking" value="yes" required />
+                                <label for="sourcePackingYes"></label><br/>Yes
+                            </div>  
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="sourcePackingNo" ng-model="locationDetails.sourcePacking" value="no" required />
+                                <label for="sourcePackingNo"></label><br/>No
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="col-md-6 pull-right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Opt for Unpacking</span>
+                            </div>
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="destUnPackingYes" ng-model="locationDetails.destUnPacking" value="yes" required />
+                                <label for="destUnPackingYes"></label><br/>Yes
+                            </div>  
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="destUnPackingNo" ng-model="locationDetails.destUnPacking" value="no" required />
+                                <label for="destUnPackingNo"></label><br/>No
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pull-left">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Opt for Loading</span>
+                            </div>
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="sourceLoadingYes" ng-model="locationDetails.sourceLoading" value="yes" required />
+                                <label for="sourceLoadingYes"></label><br/>Yes
+                            </div>  
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="sourceLoadingNo" ng-model="locationDetails.sourceLoading" value="no" required />
+                                <label for="sourceLoadingNo"></label><br/>No
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="col-md-6 pull-right">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="formLabel">Opt for Unloading</span>
+                            </div>
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="destUnLoadingYes" ng-model="locationDetails.destUnLoading" value="yes" required />
+                                <label for="destUnLoadingYes"></label><br/>Yes
+                            </div>  
+                            <div class="col-md-3 customRadio">
+                                <input type="radio" id="destUnLoadingNo" ng-model="locationDetails.destUnLoading" value="no" required />
+                                <label for="destUnLoadingNo"></label><br/>No
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-md-5 pull-left">
+                        <div class="row">
+                            
+                        </div>
+                    </div>    
+                    <div class="col-md-5 pull-right">
+                        <div class="row">                                                      
+<!--                            <button class="btn btn_custom_blue col-md-8 pull-left" ng-disabled="orderStep1.$invalid" ui-sref="order_article" ng-click="continueArticlePage()">Proceed to Select Articles</button>-->
+                            <button class="btn btn_custom_blue col-md-8 pull-left" ui-sref="order_article" ng-click="continueArticlePage()">Proceed to Select Articles</button>
+                        </div>
+                    </div>    
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+{% include 'footer.html' %}
+</body>

@@ -1,0 +1,87 @@
+<div class="orderContent">
+    <app-header></app-header>
+    <div class="container orderFormContent clearfix" ng-controller='orderContactController'>
+        <div class="orderHeader clearfix">            
+            <div class="orderIcons clearfix">
+                <div class="orderStatusIcon green">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>                   
+                </div>
+                <div class="orderBarImg">
+                    <img src="./assets/images/green_horizontal.png" alt="horizontal bar"/>
+                </div>
+                <div class="orderStatusIcon green">
+                    <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>                    
+                </div>
+                <div class="orderBarImg">
+                    <img src="./assets/images/green_horizontal.png" alt="horizontal bar"/>
+                </div>
+                <div class="orderStatusIcon green">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="orderIconsText">
+                <div class="orderStatusText green">
+                    Enter House &amp; Location Details       
+                </div>
+                <div class="orderStatusText green textPaddLeft">
+                    Select articles to be moved      
+                </div>
+                <div class="orderStatusText green textPaddLeft">
+                    Enter contact details      
+                </div>
+            </div>
+        </div> 
+        
+        <div class="orderStep3 orderSteps clearfix">
+            <form name="orderStep3">
+                <div class="row">
+                    <div class="col-md-3"><input type="text" placeholder="Full Name" ng-model="contactDetails.contactName" class="form-control" required></div>
+                    <div class="col-md-3"><input type="email" placeholder="Email" ng-model="contactDetails.contactEmail" class="form-control" required></div>
+                    <div class="col-md-3"><input type="text" placeholder="Mobile" ng-model="contactDetails.contactMobile" class="form-control" required></div>
+                    <div class="col-md-3"><input type="text" placeholder="Landline(Optional)" ng-model="contactDetails.contactLandline" class="form-control"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 pull-left contactOrigAddr">
+                        <div class="row">
+                            <p><input type="text" placeholder="Origin Address Line1" ng-model="contactDetails.contactOrigAddr1" class="form-control" required></p>
+                            <p><input type="text" placeholder="Origin Address Line2" ng-model="contactDetails.contactOrigAddr2" class="form-control" required></p>
+                            <p><input type="text" placeholder="Origin City" disabled ng-model="contactDetails.contactOrigCity" class="form-control" ></p>
+                            <p><input type="text" placeholder="Origin State" ng-model="contactDetails.contactOrigState" class="form-control" required></p>
+                            <p><input type="text" placeholder="Origin Zip/Postal Code" ng-model="contactDetails.contactOrigZip" class="form-control" required></p>
+                            <p><input type="text" placeholder="Landmark" ng-model="contactDetails.contactOrigLandmark" class="form-control" required></p>
+                        </div>
+                        
+                    </div>    
+                    
+                    <div class="col-md-5 pull-right contactDestAddr">
+                        <div class="row">
+                            <p><input type="text" placeholder="Destination Address Line1" ng-model="contactDetails.contactDestAddr1" class="form-control" required></p>
+                            <p><input type="text" placeholder="Destination Address Line2" ng-model="contactDetails.contactDestAddr2" class="form-control" required></p>
+                            <p><input type="text" placeholder="Destination City" disabled ng-model="contactDetails.contactDestCity" class="form-control" ></p>
+                            <p><input type="text" placeholder="Destination State" ng-model="contactDetails.contactDestState" class="form-control" required></p>
+                            <p><input type="text" placeholder="Destination Zip/Postal Code" ng-model="contactDetails.contactDestZip" class="form-control" required></p>
+                            <p><input type="text" placeholder="Landmark" ng-model="contactDetails.contactDestLandmark" class="form-control" required></p>
+                        </div>
+                        
+                    </div>   
+                </div>
+                <div class="row">
+                    <div class="col-md-5 pull-left">
+                        <div class="row">
+                            <button ui-sref="order_article" class="btn btn_custom_blue col-md-8 pull-right"> Go back to Articles page </button>
+                        </div>
+                    </div>    
+                    <div class="col-md-5 pull-right">
+                        <div class="row">                            
+                            <button class="btn btn_custom_blue col-md-8 pull-left" ng-disabled="orderStep3.$invalid" ng-click="confirmDetails()"> Submit Details </button>  
+                        </div>
+                    </div>    
+                </div>
+            </form>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

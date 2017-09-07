@@ -1,0 +1,82 @@
+<!-- #################### Modal content  ###################  -->    
+
+
+<div class="modal-content" id="loginModal">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="close()">&times;</button>
+    <h3 class="modal-title" ng-hide="registerCheck"> LOGIN </h3>
+    <h3 class="modal-title" ng-show="registerCheck"> REGISTER </h3>
+    <div class="col-md-12 registerCheckBlock">
+        <span ng-show="registerCheck"><input type="checkbox" name="" id=""  ng-model="registerCheck" /> Registered User? Uncheck this to Login</span> 
+        <span ng-hide="registerCheck"><input type="checkbox" name="" id="" ng-model="registerCheck" /> Not yet Registered? Check this to Register</span>
+    </div>
+  </div>
+  <div class="modal-body">
+      <form class="loginForm" name="loginForm" ng-hide="registerCheck">
+            <div class="row">
+                <div class="col-md-12">
+                    <input ng-model='loginObj.email' type="text" class="form-control" placeholder="User Name" id="" required/>
+                </div>  
+                <div class="col-md-12"><br/>
+                    <input ng-model='loginObj.pwd' type="password" class="form-control" placeholder="Password" id="" required/>
+                </div>  
+            </div>
+            <div class="row loginRemember">
+                <div class="col-md-6">
+                    <input type="checkbox" name="rememberMe" id="rememberMe" />&nbsp;Remember me
+                </div>
+                <div class="col-md-6">
+                    <a href="#" class="pull-right" onclick="" id="anchorForgtPswd" >Forgot Password ?</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button ng-click="userLogin(loginObj)" ng-disabled="loginForm.$invalid" class="btn btn-default loginBtn col-md-12" >Login</button>  
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a ng-click="signUpGoogle()" class="btn btn-block btn-social btn-google">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </a>
+                </div>
+            </div>  
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="scope" value="email" />
+                    <a ng-click="close()" ui-sref="confirm_facebook" class="btn btn-block btn-social btn-facebook">
+                        <span class="fa fa-facebook"></span> Sign in with Facebook
+                    </a>
+                </div>
+            </div>
+            
+      </form>
+      <form class="registerForm" name="registerForm" ng-show="registerCheck">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" ng-model="registerObj.username" class="form-control" placeholder="User Name" id="" required/>
+                </div>   
+                <div class="col-md-12"><br/>
+                    <input type="email" ng-model="registerObj.userEmail" class="form-control" placeholder="Email" id="" required/>
+                </div>
+                <div class="col-md-12"><br/>
+                    <input type="text" ng-model="registerObj.user_Mobile" class="form-control" placeholder="Mobile" id="" required/>
+                </div>
+                <div class="col-md-12"><br/>
+                    <input type="password" ng-model="registerObj.userPassword" class="form-control" placeholder="Password" id="" required/>
+                </div>
+                <div class="col-md-12"><br/>
+                    <input type="password" ng-model="registerConfirmPassword" class="form-control" placeholder="Confirm Password" id="" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button ng-click="userRegister(registerObj)" ng-disabled="registerForm.$invalid" class="btn btn-success registerBtn col-md-12" >Register</button>  
+                </div>                    
+            </div>            
+      </form>
+     
+  </div>
+
+</div>
+

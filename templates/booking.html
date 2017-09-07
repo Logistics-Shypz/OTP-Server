@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+<body>
+
+	{% include 'navigation.html'%}
+
+
+
+		<!-- ng-app="userBookingFormApp"  -->
+
+		<div ng-app="userBookingFormApp" class="container-fluid" style="margin-top:0px;height:500px;border: 1px solid blue;">
+
+				 <div ui-view></div>
+
+
+		  
+
+		</div>
+
+
+		<script type="text/javascript">
+
+			var userBookingFormApp = angular.module('userBookingFormApp', ["ngAnimate","ui.router"]);
+
+
+
+
+			userBookingFormApp.config(function($stateProvider, $urlRouterProvider) {
+
+			    $stateProvider
+
+			        // route to show our basic form (/form)
+			        .state('form', {
+			            url: '/form',
+			            templateUrl: "{{url_for('booking_userform')}}",
+			            controller: 'userBookingFormCtrl'
+			            //ng-controller="userBookingFormCtrl" 
+			        })
+
+			        // nested states 
+			        // each of these sections will have their own view
+			        // url will be nested (/form/profile)
+			        .state('form.profile', {
+			            url: '/profile',
+			            templateUrl: "{{url_for('booking_userinfo')}}"
+			        })
+
+			        // url will be /form/interests
+			        .state('form.interests', {
+			            url: '/interests',
+			            templateUrl: "{{url_for('booking_items')}}"
+			        })
+
+			        // url will be /form/payment
+			        .state('form.payment', {
+			            url: '/payment',
+			            templateUrl: "{{url_for('booking_address')}}"
+			        });
+
+			    // catch all route
+			    // send users to the form page 
+			    $urlRouterProvider.otherwise('/form/profile');
+			});
+
+
+			userBookingFormApp.controller("userBookingFormCtrl", function ($scope, $http) {
+
+
+				console.log("in user booling controller");
+
+				// we will store all of our form data in this object
+			    $scope.formData = "anubhav";
+
+			    // function to process the form
+			    $scope.processForm = function() {
+			        alert('awesome!');
+			    };
+			});
+			
+
+			
+		</script>
+	
+	
+	{% include 'footer.html' %}
+	
+</body>
+</html>

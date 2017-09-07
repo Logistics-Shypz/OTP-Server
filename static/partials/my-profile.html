@@ -1,0 +1,98 @@
+<div class="orderContent">
+    <app-header></app-header>
+    <div class="container myProfile clearfix" ng-controller="myProfileController">
+        <div class="myProfileCont">
+            <form name="myProfile">
+                <div class="row">
+                    <div class="col-md-8 myProfElem">
+                        <h3><b><i><u>My Profile</u></i></b></h3>
+                    </div>
+                    <div class="col-md-8 myProfElem">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="formLabel">First Name</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="userProfileData.Name" readonly="true">
+                            </div>                    
+                        </div>
+                    </div>
+                    <div class="col-md-8 myProfElem">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="formLabel">Last Name</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" readonly="true">                                
+                            </div>                    
+                        </div>
+                    </div> 
+                    <div class="col-md-8 myProfElem">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="formLabel">Email</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="email" class="form-control" ng-model="userProfileData.Email" readonly="true">
+                            </div>                    
+                        </div>
+                    </div>
+                    <div class="col-md-8 myProfElem">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="formLabel">Mobile</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="userProfileData.Mobile">
+                            </div>                    
+                        </div>
+                    </div>
+                    <div class="col-md-8 myProfElem">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn_custom_blue col-md-8 pull-left" ng-disabled="" ng-click="updateProfile()">Update</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn_custom_blue col-md-8 pull-right" ng-disabled="" ng-click="resetProfile()">Reset</button>
+                            </div>                    
+                        </div>
+                    </div><hr>
+                    <div class="col-md-8 myProfElem">
+                        <h4><b><i><u>Update password</u></i></b></h4>
+                    </div>
+                    <div class="col-md-8 myProfElem">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="formLabel">Old Password</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control" ng-model="userProfileData.oldPassword">
+                            </div>                    
+                        </div>
+                    </div>
+                    <div class="col-md-8 myProfElem">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="formLabel">Last Name</span>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="password" class="form-control" ng-model="userProfile.newPassword">  
+                            </div>                    
+                        </div>
+                    </div>
+                    <div class="col-md-8 myProfElem">
+                        <div class="row">
+                            <div class="col-md-6">
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn_custom_blue col-md-8 pull-right" ng-disabled="" ng-click="updatePassword()">Update Password</button>
+                            </div>                    
+                        </div>
+                    </div>
+                </div>            
+            </form>            
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

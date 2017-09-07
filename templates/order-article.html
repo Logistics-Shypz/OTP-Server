@@ -1,0 +1,99 @@
+<div class="orderContent">
+    <app-header></app-header>
+    <div class="container orderFormContent clearfix" ng-controller='orderArticleController as order'>
+        <div class="orderHeader clearfix">            
+            <div class="orderIcons clearfix">
+                <div class="orderStatusIcon green">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>                   
+                </div>
+                <div class="orderBarImg">
+                    <img src="./assets/images/green_horizontal.png" alt="horizontal bar"/>
+                </div>
+                <div class="orderStatusIcon green">
+                    <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>                    
+                </div>
+                <div class="orderBarImg">
+                    <img src="./assets/images/gray_horizontal.png" alt="horizontal bar"/>
+                </div>
+                <div class="orderStatusIcon">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="orderIconsText">
+                <div class="orderStatusText green">
+                    Enter House &amp; Location Details       
+                </div>
+                <div class="orderStatusText green textPaddLeft">
+                    Select articles to be moved      
+                </div>
+                <div class="orderStatusText textPaddLeft">
+                    Enter contact details      
+                </div>
+            </div>
+        </div> 
+        
+        <div class="orderStep2 orderSteps clearfix">
+            <form name="orderStep2">
+                <div class="row">   
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        <span class="formLabel">Size of your Home</span>
+                    </div>
+                     <div class="col-md-2 customRadio">                                
+                        <input type="radio" id="size1B" ng-model="orderArticleDetails.sizePropType" value="1 bhk" required/>
+                        <label for="size1B"></label><br/>1 BHK 
+                    </div>
+                    <div class="col-md-2 customRadio">
+                        <input type="radio" id="size2B" ng-model="orderArticleDetails.sizePropType" value="2 bhk" />
+                        <label for="size2B"></label><br/>2 BHK 
+                    </div>
+
+                    <div class="col-md-2 customRadio">
+                        <input type="radio" id="size3B" ng-model="orderArticleDetails.sizePropType" value="3 bhk" />
+                        <label for="size3B"></label><br/>3 BHK 
+                    </div>
+                    <div class="col-md-2 customRadio">
+                        <input type="radio" id="sizeBung" ng-model="orderArticleDetails.sizePropType" value="Bungalow" />
+                        <label for="sizeBung"></label><br/>Bungalow
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="nav nav-pills articlesVertTab">
+                            <li ng-repeat="room in articlesData" ng-class="{active:showBlock(room.userItemCategoryId)}">
+                                <a href ng-click="setBlock(room.userItemCategoryId)">{{room.userItemCategoryName}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9 articlesTabContent">
+                        <div ng-repeat="subArticle in articlesData" ng-show="showBlock(subArticle.userItemCategoryId)">
+                            <div class="row customCheckBox" ng-repeat="item in subArticle.propertyItemsSubCategory">       
+                                <input type="checkbox" id="Check_{{item.userItemSubCategoryId}}" ng-model="orderArticleDetails.selected[item.userItemSubCategoryId].id"> 
+                                <label for="Check_{{item.userItemSubCategoryId}}"></label>
+                                <span class="pull-left articleText">{{item.userItemSubCategoryName}}</span>
+                                <input type="number" min="0" class="form-control pull-left" placeholder="Item Count" id="livingCount_{{item.userItemSubCategoryId}}" ng-model="orderArticleDetails.selected[item.userItemSubCategoryId].count" ng-show="orderArticleDetails.selected[item.userItemSubCategoryId].id" />
+                            </div>                            
+                        </div>                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 pull-left">
+                        <div class="row">
+                            <button ui-sref="order_begin" class="btn btn_custom_blue col-md-8 pull-right">  Go back to previous page </button>
+                        </div>
+                    </div>    
+                    <div class="col-md-5 pull-right">
+                        <div class="row">            
+                          <button ui-sref="order_contact" ng-disabled="orderStep2.$invalid" ng-click="proceedContact()" class="btn btn_custom_blue col-md-8 pull-left"> Proceed to Contact Details  </button>                       
+                        </div>
+                    </div>    
+                </div>
+            </form>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

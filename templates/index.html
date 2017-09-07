@@ -1,92 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Login Demo</title>
-	 <meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
-	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/shypz.otp.css')}}">
-	<style type="text/css">
-			*{
+{% include 'header.html' %}
 
-				box-sizing: border-box;
-			}
-
-			body{
-
-				background-color: red;
-			}
-			
-			
-			
-			/*Media queries */
-			@media screen and (min-width: 480px){
-
-				body{
-					background-color: #ffffff;
-				}
-			}
-		
-	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
-	<script type="text/javascript">
-	
-			$(document).ready(function(){
-				
-				var username = '{{username}}';
-
-				if (username == "guest"){
-					$('#logoutBtn').css('display','none')
-					$('#signupbtn').css('display','true')
-					$('#loginBtn').text('Login')
-				}else{
-					$('#logoutBtn').css('display','true')
-					$('#signupbtn').css('display','none')
-					$('#loginBtn').text('Hi ' + username)
-				}
-				
-				$("#loginBtn").click(function(){
-
-
-				});
-				
-				
-
-				
-			});
-			
-	</script>
-	
-	
-</head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" style="position: relative;height: 100px;margin: 0px;padding: 0px;">
-	  <div class="container-fluid" style="margin-top: 25px;">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">Shypz</a>
-	    </div>
-	    <ul class="nav navbar-nav navbar-right">
-	      <li><a id="signupbtn" href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	      <li><a id="loginBtn" href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-	      <li><a id="logoutBtn" href="/logout">Log out</a></li>
-	    </ul>
-	  </div> <!-- End of div container -->
-	</nav><!--End of Nav Bar -->
+	{% include 'navigation.html'%}
 
 
-	<div class="container-fluid" style="margin-top:0px;height:500px;">
-			Content
+	<!--<div class="container-fluid" style="margin-top:0px;height:500px;">-->
+	
+		
+			
 
-	</div>
+			<div id="first-slider">
+			    <div id="carousel-example-generic" class="carousel slide carousel-fade">
+			        <!-- Indicators -->
+			        <ol class="carousel-indicators">
+			            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+			        </ol>
+			        <!-- Wrapper for slides -->
+			        <div class="carousel-inner" role="listbox">
+			            <!-- Item 1 -->
+			            <div class="item active slide1">
+			                <div class="row"><div class="container">
+			                    <div class="col-md-3 text-right">
+			                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/pfmmo6qj1/window_domain.png">
+			                    </div>
+			                    <div class="col-md-9 text-left">
+			                        <h3 data-animation="animated bounceInDown">Redefining Logistics In India</h3>
+			                        <h4 data-animation="animated bounceInUp">Serving Customers and Business</h4>             
+			                     </div>
+			                </div></div>
+			             </div> 
+			            <!-- Item 2 -->
+			            <div class="item slide2">
+			                <div class="row"><div class="container">
+			                    <div class="col-md-7 text-left">
+			                        <h3 data-animation="animated bounceInDown">Marketplace for Logistics</h3>
+			                        <h4 data-animation="animated bounceInUp">Competitive Pricing</h4>
+			                     </div>
+			                    <div class="col-md-5 text-right">
+			                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/sp11uneml/rack_server_unlock.png">
+			                    </div>
+			                </div></div>
+			            </div>
+			            <!-- Item 3 -->
+			            <div class="item slide3">
+			                <div class="row"><div class="container">
+			                    <div class="col-md-7 text-left">
+			                        <h3 data-animation="animated bounceInDown">Book Vehicle Based on Per KM</h3>
+			                        <h4 data-animation="animated bounceInUp">Book in 3 Simple Steps</h4>
+			                     </div>
+			                    <div class="col-md-5 text-right">
+			                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{url_for('static',filename='assets/images/logistics_shypz/Trucks.png')}}">
+			                        <!--http://s20.postimg.org/eq8xvxeq5/globe_network.png-->
+			                    </div>     
+			                </div></div>
+			            </div>
+			            <!-- Item 4 -->
+			            <div class="item slide4">
+			                <div class="row"><div class="container">
+			                    <div class="col-md-7 text-left">
+			                        <h3 data-animation="animated bounceInDown">Query,Select Items</h3>
+			                        <h4 data-animation="animated bounceInUp">Book</h4>
+			                     </div>
+			                    <div class="col-md-5 text-right">
+			                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
+			                    </div>  
+			                </div></div>
+			            </div>
+			            <!-- End Item 4 -->
+			    
+			        </div>
+			        <!-- End Wrapper for slides-->
+			        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			            <i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
+			        </a>
+			        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			            <i class="fa fa-angle-right"></i><span class="sr-only">Next</span>
+			        </a>
+			    </div>
+			</div>
 
-	<div class="container-fluid" style="height: 30px;">
-			Footer
 
-	</div>
+			
 
+
+
+			
+
+
+
+			<div style="width: 100%;height:500px;border:1px solid red;">
+
+				<div class="container-fluid" style="border: 1px solid red;margin: 150px; padding: 40px;">
+					Customer Type : 
+
+					<!--<div id="group" class = "btn-group btn-group-lg">
+
+					   <button id="individual" type = "button" class = "btn btn-default" data-toggle = "button">Individual</button>
+					   <button id="smb" type = "button" class = "btn btn-default" data-toggle = "button">Small and Medium Businesses</button>
+					   <button id="ecomm" type = "button" class = "btn btn-default" data-toggle = "button">Large E-Commerce Companies</button>
+					   
+					</div>-->
+
+				  <form action="/userbookingform" method="post">
+
+					<div class="btn-group customer" data-toggle="buttons">
+					  <label class="btn btn-primary active">
+					    <input type="radio" name="options" value="Individual" autocomplete="off" checked> Individual
+					  </label>
+					  <label class="btn btn-primary">
+					    <input type="radio" name="options" value="smb" autocomplete="off"> Small and Medium Businesses
+					  </label>
+					  <label class="btn btn-primary">
+					    <input type="radio" name="options" value="ecomm" autocomplete="off"> Large E-Commerce Companies
+					  </label>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Book</button>
+
+				  </form>
+
+				</div>
+			</div>
+
+
+			<div style="width: 100%;height:500px;border:1px solid green;">
+
+				text
+			</div>
+			
+
+
+
+		
+		
+	  
+
+	<!--</div>-->
+
+	
+	{% include 'footer.html' %}
 
 	
 </body>

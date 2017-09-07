@@ -1,0 +1,681 @@
+<head>
+	<title>Shypz Logistics</title>
+	<base href="/"> 
+	 <meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+	 <link href="{{url_for('static',filename='assets/bootstrap/css/bootstrap-social.css')}}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
+	 <link href="{{url_for('static',filename='assets/css/jquery-ui.css')}}" rel="stylesheet" type="text/css" />  
+     <link href="{{url_for('static',filename='assets/css/styles.css')}}" rel="stylesheet" type="text/css" /> 
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/shypz.otp.css')}}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.1/animate.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:Light' rel='stylesheet'>
+	
+	<style type="text/css">
+			*{
+
+				box-sizing: border-box;
+			}
+
+			body{
+
+				background-color: red;
+				font-family: 'Roboto', serif;
+			}
+
+
+			#UserDashboardNav{
+
+				/*padding: 100px;*/
+				left: 0px;
+				float: left;
+				padding-top : 70px;
+				padding-bottom: 220px;
+				/*border: 1px solid red;*/
+				width: 400px;
+				height: 100%;
+				
+			}
+
+
+			ul.shypzUL{
+
+
+				list-style-type: none;
+				/*border: 1px solid green;*/
+
+			}
+
+			ul.shypzUL li:nth-child(odd) {
+
+				border: 1px solid black;
+				padding: 20px;
+				border-radius: 5px;
+				border-left: 0px; 
+				border-right: 0px;
+				border-bottom: 1px;
+				
+			}
+
+			ul.shypzUL li:nth-child(even) {
+
+				border: 1px solid black;
+				padding: 20px;
+				border-radius: 5px;
+				border-left: 0px; 
+				border-right: 0px;
+				
+			}
+
+			
+			
+			
+			/*Media queries */
+			@media screen and (min-width: 480px){
+
+				body{
+					background-color: #ffffff;
+				}
+			}
+
+
+			/*adding for modal*/
+
+			 .nav-tabs {
+			    margin-bottom: 15px;
+			}
+			.sign-with {
+			    margin-top: 25px;
+			    padding: 20px;
+			}
+			div#OR {
+			    height: 30px;
+			    width: 30px;
+			    border: 1px solid #C2C2C2;
+			    border-radius: 50%;
+			    font-weight: bold;
+			    line-height: 28px;
+			    text-align: center;
+			    font-size: 12px;
+			    float: right;
+			    position: absolute;
+			    right: -16px;
+			    top: 40%;
+			    z-index: 1;
+			    background: #DFDFDF;
+			}
+
+						.log-frm {
+			}
+			.log-frm ul {
+			    margin: 0 !important;
+			    padding: 0 !important;
+			}
+			.log-frm ul li {
+			    color: #666;
+			    display: block;
+			    font-size: 14px;
+			    line-height: 25px;
+			}
+			.log-frm ul li a {
+			    color: #f47521;
+			    cursor: pointer;
+			    display: block;
+			    padding: 10px 0;
+			}
+			.log-frm ul li p {
+			    border: 1px solid #ccc;
+			    color: #666;
+			    font-size: 12px;
+			    line-height: 18px;
+			    margin: 10px 0;
+			    padding: 2px 5px;
+			}
+			.log-frm ul li input[type="text"] {
+			    border: 1px solid #ccc;
+			    border-radius: 0;
+			    color: #000;
+			    display: block;
+			    font-size: 13px;
+			    line-height: 19px;
+			    margin-bottom: 10px;
+			    width: 100%;
+			}
+			.model-l {    
+			    padding-right: 0px;    
+			}
+			.model-r .o-r {
+			    background: #fff none repeat scroll 0 0;
+			    border: medium none;
+			    border-radius: 100%;
+			    bottom: 0;
+			    height: 40px;
+			    margin: auto;
+			    overflow: hidden;
+			    position: absolute;
+			    left: -19px;
+			    top: 0;
+			    width: 40px;
+			    z-index: 99999;
+			}
+			.model-r .o-r span {
+			    background: #fff none repeat scroll 0 0;
+			    border: 2px solid #ccc;
+			    color: #666;
+			    display: block;
+			    height: 100%;
+			    padding: 8px 0 0;
+			    text-align: center;
+			    width: 100%;
+			    border-radius: 100%;
+			    display:block;
+			    position: relative;
+			}
+			.model-r {
+			    padding-left: 30px;
+			    position: relative;
+			    border-left: 1px dotted #cccccc;
+			}
+			.forgot {
+			    display: none;
+			}
+
+
+			/*Css for Image Carousel*/
+
+
+/********************************/
+/*          Main CSS     */
+/********************************/
+
+
+#first-slider .main-container {
+  padding: 0;
+}
+
+
+#first-slider .slide1 h3, #first-slider .slide2 h3, #first-slider .slide3 h3, #first-slider .slide4 h3{
+    color: #fff;
+    font-size: 30px;
+      text-transform: uppercase;
+      font-weight:700;
+}
+
+#first-slider .slide1 h4,#first-slider .slide2 h4,#first-slider .slide3 h4,#first-slider .slide4 h4{
+    color: #fff;
+    font-size: 30px;
+      text-transform: uppercase;
+      font-weight:700;
+}
+#first-slider .slide1 .text-left ,#first-slider .slide3 .text-left{
+    padding-left: 40px;
+}
+
+
+#first-slider .carousel-indicators {
+  bottom: 0;
+}
+#first-slider .carousel-control.right,
+#first-slider .carousel-control.left {
+  background-image: none;
+}
+#first-slider .carousel .item {
+  min-height: 425px; 
+  height: 100%;
+  width:100%;
+}
+
+.carousel-inner .item .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+
+#first-slider h3{
+  animation-delay: 1s;
+}
+#first-slider h4 {
+  animation-delay: 2s;
+}
+#first-slider h2 {
+  animation-delay: 3s;
+}
+
+
+#first-slider .carousel-control {
+    width: 6%;
+        text-shadow: none;
+}
+
+
+#first-slider h1 {
+  text-align: center;  
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#first-slider .p {
+  padding-top: 125px;
+  text-align: center;
+}
+
+#first-slider .p a {
+  text-decoration: underline;
+}
+#first-slider .carousel-indicators li {
+    width: 14px;
+    height: 14px;
+    background-color: rgba(255,255,255,.4);
+  border:none;
+}
+#first-slider .carousel-indicators .active{
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+  border:none;
+}
+
+
+.carousel-fade .carousel-inner .item {
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+}
+.carousel-fade .carousel-inner .item,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  opacity: 0;
+}
+.carousel-fade .carousel-inner .active,
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+.carousel-fade .carousel-inner .next,
+.carousel-fade .carousel-inner .prev,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.carousel-fade .carousel-control {
+  z-index: 2;
+}
+
+.carousel-control .fa-angle-right, .carousel-control .fa-angle-left {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+}
+.carousel-control .fa-angle-left{
+    left: 50%;
+    width: 38px;
+    height: 38px;
+    margin-top: -15px;
+    font-size: 30px;
+    color: #fff;
+    border: 3px solid #ffffff;
+    -webkit-border-radius: 23px;
+    -moz-border-radius: 23px;
+    border-radius: 53px;
+}
+.carousel-control .fa-angle-right{
+    right: 50%;
+    width: 38px;
+    height: 38px;
+    margin-top: -15px;
+    font-size: 30px;
+    color: #fff;
+    border: 3px solid #ffffff;
+    -webkit-border-radius: 23px;
+    -moz-border-radius: 23px;
+    border-radius: 53px;
+}
+.carousel-control {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+
+/********************************/
+/*       Slides backgrounds     */
+/********************************/
+#first-slider .slide1 {
+    background-image: url(http://s20.postimg.org/h50tgcuz1/image.jpg);
+      background-size: cover;
+    background-repeat: no-repeat;
+}
+#first-slider .slide2 {
+  background-image: url(http://s20.postimg.org/uxf8bzlql/image.jpg);
+      background-size: cover;
+    background-repeat: no-repeat;
+}
+#first-slider .slide3 {
+	/*http://s20.postimg.org/el56m97f1/image.jpg*/
+	
+  background-image: url({{url_for('static',filename='assets/images/logistics_shypz/Trucks.png')}});
+      background-size: cover;
+    background-repeat: no-repeat;
+}
+#first-slider .slide4 {
+  background-image: url(http://s20.postimg.org/66pjy66dp/image.jpg);
+      background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+
+
+div.cities{
+
+    padding: 20px;
+    /*border: 1px solid red;*/
+    position: relative;
+    float: left;
+    
+   
+}
+
+.cities-modal-body{
+
+    overflow: hidden;
+}
+
+.cities-modal-dialog{
+
+
+   width: 40%;
+
+}
+
+ul.citiesModalList{
+
+  list-style-type: none;
+}
+
+ul.citiesModalList li{
+  position: relative;
+  left: 0px;
+  float: left;
+ 
+  padding: 10px;
+}
+
+
+.footer-dark{
+
+
+	background-color: #000000;
+	color: white;
+	font-family: 'Roboto', serif;
+}
+
+.footer-widget-container{
+	list-style-type: none;
+}
+
+.footer-widget-container li{
+	list-style-type: none;
+}
+
+
+.content{
+    margin: 10px 0 0 10px;
+}
+
+
+
+/* form styling */
+#form-container                { background:#2f2f2f; margin-bottom:20px;
+    border-radius:5px; }
+#form-container .page-header   { background:#151515; margin:0; padding:30px; 
+    border-top-left-radius:5px; border-top-right-radius:5px; }
+
+/* numbered buttons */
+#status-buttons                 {  }
+#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; }
+
+/* we will style the span as the circled number */
+#status-buttons span            { background:#080808; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
+    border-radius:50%; }
+
+/* active buttons turn light green-blue*/
+#status-buttons a.active span   { background:#00BC8C; }
+
+
+============================================================================= */
+#signup-form            { position:relative; min-height:300px; overflow:hidden; padding:30px; }
+#form-views             { width:auto; }
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave      { position:absolute; left:30px; right:30px;
+    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease; 
+}
+
+/* enter animation */
+#form-views.ng-enter            { 
+    -webkit-animation:slideInRight 0.5s both ease;
+    -moz-animation:slideInRight 0.5s both ease;
+    animation:slideInRight 0.5s both ease; 
+}
+
+/* leave animation */
+#form-views.ng-leave            { 
+    -webkit-animation:slideOutLeft 0.5s both ease;
+    -moz-animation:slideOutLeft 0.5s both ease;
+    animation:slideOutLeft 0.5s both ease;   
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {  
+    to      { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+    to      { -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(200%); }
+    to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+    from    { -moz-transform:translateX(200%); }
+    to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+    from    { -webkit-transform:translateX(200%); }
+    to      { -webkit-transform: translateX(0); }
+}
+
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px){
+      
+}
+@media screen and (max-width: 640px){
+      
+}
+		
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='assets/js/jquery-ui.js')}}" ></script>
+	<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='assets/js/ui-bootstrap-tpls.js')}}" ></script>
+	<script type="text/javascript">
+	
+			$(document).ready(function(){
+				
+				var username = '{{username}}';
+
+
+				if (username == "guest"){
+					//$('#logoutBtn').css('display','none')
+					$('#signupbtn').css('display','true')
+					//$('#loginBtn').text('Login')
+					$('#loginBtn').css('display','true')
+					$('#accountBtn').css('display','none')
+					
+				}else{
+					//$('#logoutBtn').css('display','true')
+					$('#signupbtn').css('display','none')
+					$('#loginBtn').css('display','none')
+					$('#accountBtn').css('display','true')
+					//$('#loginBtn').text('Hi ' + username)
+					$('#accountBtn').text('Hi ' + username)
+				}
+				
+				$("#loginBtn").click(function(){
+
+
+				});
+				
+
+				function ayantoggle(){
+			        $(".forgot").slideToggle('slow');
+			    }
+
+
+
+			    //Function to animate slider captions 
+				function doAnimations( elems ) {
+					//Cache the animationend event in a variable
+					var animEndEv = 'webkitAnimationEnd animationend';
+					
+					elems.each(function () {
+						var $this = $(this),
+							$animationType = $this.data('animation');
+						$this.addClass($animationType).one(animEndEv, function () {
+							$this.removeClass($animationType);
+						});
+					});
+				}
+				
+				//Variables on page load 
+				var $myCarousel = $('#carousel-example-generic'),
+					$firstAnimatingElems = $myCarousel.find('.item:first').find("[data-animation ^= 'animated']");
+					
+				//Initialize carousel 
+				$myCarousel.carousel();
+				
+				//Animate captions in first slide on page load 
+				doAnimations($firstAnimatingElems);
+				
+				//Pause carousel  
+				$myCarousel.carousel('pause');
+				
+				
+				//Other slides to be animated on carousel slide event 
+				$myCarousel.on('slide.bs.carousel', function (e) {
+					var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
+					doAnimations($animatingElems);
+				});  
+			    $('#carousel-example-generic').carousel({
+			        interval:3000,
+			        pause: "false"
+			    });
+
+
+
+			    /*city modal*/
+
+			    
+			    if(localStorage.getItem('popState') != 'shown'){
+					//$j("#popup").delay(2000).fadeIn();
+					$('#citiesModal').modal('show');
+					localStorage.setItem('popState','shown');
+					
+				}else{
+					console.log(localStorage.getItem('city'));
+					var city = localStorage.getItem('city');
+					if (city == null){
+						$('#menu1').text("Select your city");
+						$('#menu1').append(' <span class="caret"></span>');
+					}
+					else{$('#menu1').text(localStorage.getItem('city'));
+					$('#menu1').append(' <span class="caret"></span>');
+					}
+				}
+
+			    
+
+
+	             $('a.citiesLink').on('click',function(){
+
+	                //var img_alt = $(this).children("img").attr('alt');
+
+	                var img_alt = $(this).children("img").attr('alt');
+
+	                //alert(img_alt);
+
+	                $('#menu1').text(img_alt);
+	                localStorage.setItem('city',img_alt);
+	                $('#menu1').append(' <span class="caret"></span>');
+
+	                 $('#citiesModal').modal('hide');
+
+	             });
+
+
+	             $('#menu1').on('click',function(){
+	             	console.log("in selecting city")
+	             	$('#citiesModal').modal('show');
+
+	             });
+	             
+
+	             $('.customer input[type=radio]').on('change', function() {
+					    console.log(this.value);
+					});
+	             	
+	             
+
+				
+			});
+			
+	</script>
+	
+	
+	<!--  <script type="text/javascript" src="{{url_for('static',filename='assets/js/app.js')}}" ></script>
+	 <script type="text/javascript" src="{{url_for('static',filename='assets/js/directives.js')}}" ></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/services.js')}}" ></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/loginController.js')}}" ></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/landingController.js')}}" ></script>        
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/socialLoginController.js')}}" ></script>        
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/mainActionController.js')}}" ></script> 
+    <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/orderContactController.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/orderBeginController.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/orderArticleController.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myOrdersController.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myContactController.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myTestimonialController.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myProfileController.js')}}"></script>-->
+	
+	
+	
+</head>

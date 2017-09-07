@@ -1,0 +1,43 @@
+<div class="container-fluid" ng-controller="socialLoginController as social">
+    <div class="header clearfix row">
+        <div class="headerCont col-md-12 clearfix">
+            <div class="col-md-8 socialCont">
+                <div class="col-md-3">
+                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> + (91) 080 90000009
+                </div>
+                <div class="col-md-3">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;
+                    <a id="emailAnchor" href="mailto:info@example.com">admin@shipz.in</a>
+                </div>                        
+            </div>
+            <div class="col-md-4 loginCont pull-right">
+                <div class="pull-right" ng-hide='boolLoggedUser'>                             
+                   <a href="" ng-click="social.loginModal()" class="loginContBtns"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Login</a>	
+                </div>
+                <div class="pull-right userNav" ng-show='boolLoggedUser'>                             
+                    <a href="" class="userNav"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Hello {{loggedUserData.Name}}</a>
+                    <a href="" ng-click="logoutUser();" ui-sref="home" class="userNav">&nbsp; Logout</a>	
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="logoContainer">
+        <div class="navLogo clearfix row">
+            <div class="logoCont col-md-4">
+                <h3><a href='' ui-sref="home"><img src="./assets/images/logo1.png" alt="shipz" title="Shipz" /></a></h3>
+            </div>
+            <div class="navigation col-md-8 pull-right">
+                <nav class="link-effect-2">
+                    <ul class="mainNav">
+                        <li class=""><a href="">Home</a></li>
+                        <li class="" ng-show='boolLoggedUser'><a ui-sref="my-profile" class="userNav">&nbsp; My Profile</a></li>
+                        <li class="" ng-show='boolLoggedUser'><a ui-sref="my-orders" class="userNav">&nbsp; My Orders</a></li>
+                        <li class=""><a href="">Testimonials</a></li>
+                        <li class=""><a href="">Locations</a></li>
+                        <li class=""><a href="">Contact us</a></li>
+                    </ul>
+                </nav>                    
+            </div>
+        </div>
+    </div>
+</div>                

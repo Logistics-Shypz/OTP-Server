@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+<body>
+
+	{% include 'navigation.html'%}
+
+	
+	<div  ng-app="UserDashboardApp" class="container-fluid" style="margin-top:0px;height:500px;">
+		<div id="UserDashboardNav">
+			<ul class="list-group shypzUL">
+				
+				<li class="list-group-item"><a ui-sref="address" class="btn btn-info btn-block" role="button">Address</a></li>
+				<li class="list-group-item"><a ui-sref="contact" class="btn btn-info btn-block" role="button">Contact</a></li>
+				<li class="list-group-item"><a ui-sref="password" class="btn btn-info btn-block" role="button">Password</a></li>
+				<li class="list-group-item"><a ui-sref="promotions" class="btn btn-info btn-block" role="button">Promotions</a></li>
+				
+
+			</ul>
+
+		</div>
+
+		<div  style="height:500px;margin-left:400px;" ng-view>
+
+		</div>
+
+		
+
+	</div>
+	
+	
+
+		<!-- <p><a href="useraccount#!">Main</a></p>
+		
+		<a href="useraccount#!red">Red</a>
+		<a href="useraccount#!green">Green</a>
+		<a href="useraccount#!blue">Blue</a>
+		
+		<div ng-view></div>-->
+
+	{% include 'footer.html' %}
+
+	<script type="text/javascript">
+	
+	/*var app = angular.module("myApp", ["ngRoute"]);
+	app.config(function($routeProvider) {
+	    $routeProvider
+	    .when("/", {
+	        templateUrl : "{{url_for('address')}}"
+	    })
+	    .when("/red", {
+	        templateUrl : "{{url_for('contact')}}"
+	    })
+	    .when("/green", {
+	        templateUrl : "{{url_for('password')}}"
+	    })
+	    .when("/blue", {
+	        templateUrl : "{{url_for('promotions')}}"
+	    });
+	});*/
+		
+	//http://localhost:5000/useraccount#!/
+		var app = angular.module("UserDashboardApp",["ngAnimate","ui.router"]);
+		      
+		app.config(function($stateProvider, $urlRouterProvider) {
+			
+			 $stateProvider
+			 	.state('address', {
+		            url: '/',
+		            templateUrl: 'templates/Address.html',
+		            controller: 'addressShypzController'
+		            //ng-controller="userBookingFormCtrl" 
+		        })
+		        
+		        .state('contact', {
+		            url: '/contact',
+		            templateUrl: "{{url_for('contact')}}",
+		            controller: 'contactShypzController'
+		            //ng-controller="userBookingFormCtrl" 
+		        })
+		          /*.when("/", {
+		              templateUrl : "{{url_for('address')}}",
+		              controller : "addressShypzController"
+		          })
+		          .when("/contact", {
+		        	  
+		              templateUrl : "{{url_for('contact')}}",
+		              controller : "contactShypzController"
+		          })
+		          .when("/password", {
+		              templateUrl : "{{url_for('password')}}"
+		          })
+		          .when("/promotions", {
+		              templateUrl : "{{url_for('promotions')}}"
+		          });*/
+		        $urlRouterProvider.otherwise('/');
+		      });
+
+			app.controller("addressShypzController", function ($scope, $http,$location) {
+				console.log("In address controller");
+				console.log($location.path())
+				console.log($location.url())
+				console.log($location.absUrl())
+				console.log($location.hash())
+				var addressApi = 'http://localhost:8080/api/users/name/' + '{{username}}' + '/address';
+			    $scope.fullname = '{{username}}';
+			    $scope.editableInput=true;
+			    
+			    var country;
+			    var country_key
+			    
+			    
+			    $http.get(addressApi).then(function(response){
+			    	console.log(response.data.length);
+			    	if(response.data.length > 0){
+			    		
+			    		var addressResponse = response.data;
+			    		//console.log((addressResponse[0]['addressCountry']));
+			    		
+			    		$scope.addressline1 = addressResponse[0]['addressLine'];
+			    		$scope.addressline2 = addressResponse[0]['addressArea'];
+			    		$scope.city = addressResponse[0]['addressCity'];
+			    		$scope.zip = addressResponse[0]['addressPincode'];
+			    		$scope.state = addressResponse[0]['addressState'];
+			    		//$scope.country = addressResponse[0]['addressCountry'];
+
+			    		//console.log($scope.country);
+			    		
+			    		//$('#country option[value=IN]').attr('selected',true);
+			    	$('#country option[value=IN]').text(addressResponse[0]['addressCountry']).attr('selected','selected');
+			    		//console.log($('#country').find(":selected").text());
+			        	//console.log($('#country').find(":selected").val());
+			    		
+			    		//console.log("done");
+
+			    		//$scope.country = "India";
+			    		
+			    	}
+			    	
+			    });
+			    
+			    
+			    $scope.getKey = function(group) {
+			        country = $('#country').find(":selected").text();
+			        //console.log($('#country').find(":selected").text());
+			        //console.log($('#country').find(":selected").val());
+				}
+
+				var setCountryName = function() {
+				  $scope.country = $("#country option:selected").text();
+				};
+
+
+				$scope.makeAddressEditable = function(){
+					$scope.editableInput=false;
+				};
+
+			    //console.log($scope.addressline1);
+			    $scope.checkAndSendAddress = function(){
+			    	setCountryName()
+			    	//console.log($scope.country)
+
+				    if($scope.addressline1 != null ||
+				    	$scope.addressline2 != null ||
+				    	$scope.city != null || 
+				    	$scope.zip != null ||
+				    	$scope.state != null ||
+				    	$scope.country != null
+				    	){
+					    var addressObj = {
+					    		'username' : $scope.fullname,
+					    		'addressLine' : $scope.addressline1,
+					    		'addressArea' : $scope.addressline2,
+					    		'addressCity' : $scope.city,
+					    		'addressPincode' : $scope.zip,
+					    		'addressState' : $scope.state,
+					    		'addressCountry' : $scope.country
+					    };
+
+
+				    $http.post('/updateAddress', addressObj).then(function(response){
+				    	//console.log(addressObj)
+				    	//console.log("success");
+				    	//console.log(response.data);
+				    	console.log(response.data.code)
+				    	code = response.data.code
+				    	if(code == 1){
+				    		alert("Address Updated Successfully");
+
+				    	console.log(response.data.Address['addressCountry'])
+				    	$scope.addressline1 = response.data.Address['addressLine'];
+			    		$scope.addressline2 = response.data.Address['addressArea'];
+			    		$scope.city = response.data.Address['addressCity'];
+			    		$scope.zip = response.data.Address['addressPincode'];
+			    		$scope.state = response.data.Address['addressState'];
+			    		//$scope.country = addressResponse[0]['addressCountry'];
+
+			    		//console.log($scope.country);
+			    		
+			    		//$('#country option[value=IN]').attr('selected',true);
+			    		//setCountryName();
+			    	$('#country option[value=IN]').text("India").attr('selected','selected');
+			    		console.log('done');
+				    	}
+
+				    }, function(error){
+
+				    	console.log("error");
+				    });
+				   };
+				}
+			    
+
+			});
+			
+			app.controller("contactShypzController", function ($scope, $http) {
+				console.log("In contact shypz controller")
+				
+			});
+	</script>
+
+
+
+	
+</body>
+</html>

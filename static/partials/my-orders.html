@@ -1,0 +1,38 @@
+<div class="orderContent">
+    <app-header></app-header>
+    <div class="container myOrders clearfix" ng-controller="myOrdersController">
+        <div class="myOrdersCont">
+            <div class="ordersHead">
+                <h3>My Orders</h3>
+            </div>
+            <div class="ordersCont">
+                <form name="myOrdersForm">
+                    <table class="ordersContTable">
+                        <thead>
+                            <tr>
+                                <th width="15%"></th>
+                                <th width="45%">Order ID</th>
+                                <th width="40%">Order Date</th>
+                            </tr>                        
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="ord in orders">
+                                <td>
+                                    <input type="radio" id="order_{{ord.orderId}}" name="order" ng-model="selectedOrder" value="{{ord.orderData}}" required/>
+                                    <label for="order_{{ord.orderId}}"></label><br/>
+                                </td>   
+                                <td>{{ord.orderId}}</td>
+                                <td>{{ord.orderDate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="orderContBtn">
+                        <button class="btn btn_custom_blue col-md-3" ui-sref="order_begin" ng-click="continueSelectedOrder()">Proceed to Select Articles</button>
+                    </div>
+                </form>                
+            </div>
+            
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+<body ng-app="myApp">
+
+	{% include 'navigation.html'%}
+
+	
+
+		
+
+	
+	
+
+		<p><a ui-sref="main">Main</a></p>
+		
+		<a ui-sref="red">Red</a>
+		<a ui-sref="green">Green</a>
+		<a ui-sref="blue">Blue</a>
+		
+		<div ui-view></div>
+
+	{% include 'footer.html' %}
+
+	<script type="text/javascript">
+	
+	var app = angular.module("myApp", ["ui.router"]);
+	app.config(function($stateProvider,$urlRouterProvider) {
+		$urlRouterProvider.otherwise('/main')
+	    $stateProvider
+	    .state("main", {
+	    	url :'/main',
+	        templateUrl : "{{url_for('address')}}"
+	    })
+	    .state("red", {
+	    	url :'/red',
+	        templateUrl : "{{url_for('contact')}}"
+	    })
+	    .state("green", {
+	    	url :'/green',
+	        templateUrl : "{{url_for('password')}}"
+	    })
+	    .state("blue", {
+	    	url :'/blue',
+	        templateUrl : "{{url_for('promotions')}}"
+	    });
+
+	    
+	});
+		
+	
+	</script>
+
+
+
+	
+</body>
+</html>
