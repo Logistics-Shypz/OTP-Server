@@ -58,7 +58,7 @@ myApp.service('apiServices',['$http',function($http){
     };
 }]); 
 
-myApp.factory('getServices',function($http){
+bookingOrderApp.factory('getServices',function($http){
    var getData = function(apiPath){
         return $http({method:"GET", url:apiPath}).then(function(result){            
             return result.data;
@@ -76,7 +76,7 @@ myApp.factory('postServices',function($http){
    return {postData : postData};
 });
 
-myApp.factory('loggedUserInfo',['$rootScope',function($rootScope){
+bookingOrderApp.factory('loggedUserInfo',['$rootScope',function($rootScope){
     var userObj = {};
     userObj.userDetails = {}; 
     userObj.pushUserData = function(obj){
@@ -89,7 +89,7 @@ myApp.factory('loggedUserInfo',['$rootScope',function($rootScope){
     return userObj;
 }]);
 
-myApp.factory('sharedOrderInfo',['$rootScope',function($rootScope){
+bookingOrderApp.factory('sharedOrderInfo',['$rootScope',function($rootScope){
     var orderObj = {};
     orderObj.locationObj = {};
     orderObj.articleObj = {};
@@ -109,5 +109,8 @@ myApp.factory('sharedOrderInfo',['$rootScope',function($rootScope){
     orderObj.broadCastArticles = function(){
         $rootScope.$broadcast('getArticleDetails');
     };   
+
+    console.log(orderObj);
     return orderObj;
+
 }]);

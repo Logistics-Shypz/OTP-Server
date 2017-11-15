@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-App="myApp">
 {% include 'header.html' %}
 
 <body>
@@ -11,19 +11,19 @@
 	
 		
 			
-
-			<div id="first-slider">
+		
+			<!--  <div id="first-slider">
 			    <div id="carousel-example-generic" class="carousel slide carousel-fade">
-			        <!-- Indicators -->
+			        
 			        <ol class="carousel-indicators">
 			            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 			            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
 			            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 			            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
 			        </ol>
-			        <!-- Wrapper for slides -->
+			        
 			        <div class="carousel-inner" role="listbox">
-			            <!-- Item 1 -->
+			           
 			            <div class="item active slide1">
 			                <div class="row"><div class="container">
 			                    <div class="col-md-3 text-right">
@@ -35,7 +35,7 @@
 			                     </div>
 			                </div></div>
 			             </div> 
-			            <!-- Item 2 -->
+			           
 			            <div class="item slide2">
 			                <div class="row"><div class="container">
 			                    <div class="col-md-7 text-left">
@@ -47,7 +47,7 @@
 			                    </div>
 			                </div></div>
 			            </div>
-			            <!-- Item 3 -->
+			           
 			            <div class="item slide3">
 			                <div class="row"><div class="container">
 			                    <div class="col-md-7 text-left">
@@ -56,11 +56,11 @@
 			                     </div>
 			                    <div class="col-md-5 text-right">
 			                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="{{url_for('static',filename='assets/images/logistics_shypz/Trucks.png')}}">
-			                        <!--http://s20.postimg.org/eq8xvxeq5/globe_network.png-->
+			                       
 			                    </div>     
 			                </div></div>
 			            </div>
-			            <!-- Item 4 -->
+			           
 			            <div class="item slide4">
 			                <div class="row"><div class="container">
 			                    <div class="col-md-7 text-left">
@@ -72,10 +72,10 @@
 			                    </div>  
 			                </div></div>
 			            </div>
-			            <!-- End Item 4 -->
+			           
 			    
 			        </div>
-			        <!-- End Wrapper for slides-->
+			       
 			        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 			            <i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
 			        </a>
@@ -85,7 +85,7 @@
 			    </div>
 			</div>
 
-
+			-->
 			
 
 
@@ -94,20 +94,12 @@
 
 
 
-			<div style="width: 100%;height:500px;border:1px solid red;">
+			 <!--  <div style="width: 100%;height:500px;border:1px solid red;">
 
 				<div class="container-fluid" style="border: 1px solid red;margin: 150px; padding: 40px;">
 					Customer Type : 
 
-					<!--<div id="group" class = "btn-group btn-group-lg">
-
-					   <button id="individual" type = "button" class = "btn btn-default" data-toggle = "button">Individual</button>
-					   <button id="smb" type = "button" class = "btn btn-default" data-toggle = "button">Small and Medium Businesses</button>
-					   <button id="ecomm" type = "button" class = "btn btn-default" data-toggle = "button">Large E-Commerce Companies</button>
-					   
-					</div>-->
-
-				  <form action="/userbookingform" method="post">
+				  <form action="/orderbooking" method="get">
 
 					<div class="btn-group customer" data-toggle="buttons">
 					  <label class="btn btn-primary active">
@@ -126,17 +118,131 @@
 				  </form>
 
 				</div>
+			</div>-->
+
+
+			 <div id="userinput" class="container-fluid">
+		
+				<form action="/showBookingNav" id="userform" class="form-inline formdiv" method="get">
+					
+					<div class="form-group-* input-group indiv">
+						
+						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+						<input id="from" type="text" name="from" placeholder="From" class="form-control input-lg"/>
+					</div>
+					<div class="form-group-* input-group indiv">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+						<input id="to" type="text" name="to" placeholder="To" class="form-control input-lg"/>
+					</div>
+					<div class="form-group-* input-group indiv">
+					
+						<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						<input id="when" type="text" name="when" placeholder="When" class="form-control input-lg" />
+					</div>
+					
+					<div class="form-group-* input-group indiv">
+					
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<select class="form-control input-lg" id="customertype">
+						    <option>Select Customer Type</option>
+						    <option value="Individual">Individual</option>
+						    <option value="smb">Small and Medium Businesses</option>
+						    <option value="ecomm">Large E-Commerce Companies</option>
+						</select>
+						
+					</div>
+					
+					<div style="display:inline;"  class="form-group-* input-group indiv">
+						<input id="submit" type="submit" name="submitBtn" value="Submit" class="btn btn-primary btn-lg"/>
+					</div>
+		
+				</form>
+		
 			</div>
-
-
-			<div style="width: 100%;height:500px;border:1px solid green;">
-
-				text
+	
+			 
+			 <!--  <div id="estimate" class="container-fluid">	
+				 <div class="row">
+				    <div class="col-lg-12 panel panel-info">
+				    	<div class="panel-body infoBookDiv"><label for="Distance">Distance</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="est_dist"></span></div>
+				    </div>
+				  </div>
+				  
+				  <div class="row">
+				    <div class="col-lg-12 panel panel-info">
+				    	<div class="panel-body infoBookDiv"><label for="Time">Time</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="est_time"></span></div>
+				    </div>
+				  </div>
+				
+				  <div class="row">
+				    <div class="col-lg-12 panel panel-info">
+				    	<div class="panel-body infoBookDiv"><label for="Estimated Fare">Fare</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="est_fare"></span></div>
+				    </div>
+				  </div>
+				
+				
+				
+				
 			</div>
+	
+			<div id="map">
+				
+			</div>
+			-->
+			
+			
+		<script type="text/javascript">
+		
+		function activateFromPlacesSearch(){
+
+			var input = document.getElementById('from');
+			var autocomplete = new google.maps.places.Autocomplete(input);
+
+			autocomplete.addListener('place_changed',function(){
+				var place = autocomplete.getPlace();
+				console.log(place);
+
+			});
+			/*
+			autocomplete.bindTo('bounds', map);
+			var infowindow = new google.maps.InfoWindow();
+			var infowindowContent = document.getElementById('infowindow-content');
+	        infowindow.setContent(infowindowContent);
+	        var marker = new google.maps.Marker({
+	          map: map,
+	          anchorPoint: new google.maps.Point(0, -29)
+	        });
+			
+			autocomplete.addListener('place_changed', function() {
+				
+				var place = autocomplete.getPlace();
+				console.log(place);
+				
+				
+			});*/
+			
+			
+			
+		}
+
+		function activateToPlacesSearch(){
+
+			var input1 = document.getElementById('to');
+			var autocomplete1 = new google.maps.places.Autocomplete(input1);
+		}
+		
+		function activatePlacesSearch(){
+			activateFromPlacesSearch();
+			activateToPlacesSearch();
+
+		}
+		</script>
 			
 
-
-
+			
+		
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-p2cQJYytd8L-b4Gen2gvYrJg5xA4w8&libraries=places&callback=activatePlacesSearch"></script>
+		
 		
 		
 	  
@@ -144,8 +250,8 @@
 	<!--</div>-->
 
 	
+	
 	{% include 'footer.html' %}
-
 	
 </body>
 </html>

@@ -1,21 +1,20 @@
 <div class="orderContent">
-    <app-header></app-header>
     <div class="container orderFormContent clearfix" ng-controller='orderArticleController as order'>
-        <div class="orderHeader clearfix">            
+        <!--  <div class="orderHeader clearfix">            
             <div class="orderIcons clearfix">
                 <div class="orderStatusIcon green">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>                   
                 </div>
                 <div class="orderBarImg">
-                    <img src="./assets/images/green_horizontal.png" alt="horizontal bar"/>
+                    <img src="{{url_for('static',filename='assets/images/green_horizontal.png')}}" alt="horizontal bar"/>
                 </div>
                 <div class="orderStatusIcon green">
                     <span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
                     <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>                    
                 </div>
                 <div class="orderBarImg">
-                    <img src="./assets/images/gray_horizontal.png" alt="horizontal bar"/>
+                    <img src="{{url_for('static',filename='assets/images/gray_horizontal.png')}}" alt="horizontal bar"/>
                 </div>
                 <div class="orderStatusIcon">
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -33,7 +32,7 @@
                     Enter contact details      
                 </div>
             </div>
-        </div> 
+        </div> -->
         
         <div class="orderStep2 orderSteps clearfix">
             <form name="orderStep2">
@@ -65,17 +64,17 @@
                     <div class="col-md-3">
                         <ul class="nav nav-pills articlesVertTab">
                             <li ng-repeat="room in articlesData" ng-class="{active:showBlock(room.userItemCategoryId)}">
-                                <a href ng-click="setBlock(room.userItemCategoryId)">{{room.userItemCategoryName}}</a>
+                                <a href ng-click="setBlock(room.userItemCategoryId)">{{'{{room.userItemCategoryName}}'}}</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-9 articlesTabContent">
                         <div ng-repeat="subArticle in articlesData" ng-show="showBlock(subArticle.userItemCategoryId)">
                             <div class="row customCheckBox" ng-repeat="item in subArticle.propertyItemsSubCategory">       
-                                <input type="checkbox" id="Check_{{item.userItemSubCategoryId}}" ng-model="orderArticleDetails.selected[item.userItemSubCategoryId].id"> 
-                                <label for="Check_{{item.userItemSubCategoryId}}"></label>
-                                <span class="pull-left articleText">{{item.userItemSubCategoryName}}</span>
-                                <input type="number" min="0" class="form-control pull-left" placeholder="Item Count" id="livingCount_{{item.userItemSubCategoryId}}" ng-model="orderArticleDetails.selected[item.userItemSubCategoryId].count" ng-show="orderArticleDetails.selected[item.userItemSubCategoryId].id" />
+                                <input type="checkbox" id="Check_{{'{{item.userItemSubCategoryId}}'}}" ng-model="orderArticleDetails.selected[item.userItemSubCategoryId].id"> 
+                                <label for="Check_{{'{{item.userItemSubCategoryId}}'}}"></label>
+                                <span class="pull-left articleText">{{'{{item.userItemSubCategoryName}}'}}</span>
+                                <input type="number" min="0" class="form-control pull-left" placeholder="Item Count" id="livingCount_{{'{{item.userItemSubCategoryId}}'}}" ng-model="orderArticleDetails.selected[item.userItemSubCategoryId].count" ng-show="orderArticleDetails.selected[item.userItemSubCategoryId].id" />
                             </div>                            
                         </div>                        
                     </div>
@@ -95,5 +94,5 @@
             </form>
         </div>
     </div>
-    <app-footer></app-footer>
+    
 </div>

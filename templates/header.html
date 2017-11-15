@@ -414,7 +414,8 @@ ul.citiesModalList li{
 
 .footer-dark{
 
-
+	float:left;
+	width: 100%;
 	background-color: #000000;
 	color: white;
 	font-family: 'Roboto', serif;
@@ -516,6 +517,67 @@ ul.citiesModalList li{
 @media screen and (max-width: 640px){
       
 }
+
+
+/********************************/
+/*         Google Maps index page css      */
+/********************************/
+#userinput{
+  		
+  		//background-color: #B76BA3; 
+  		background : url('../static/assets/images/logistics_shypz/truck_and_indian_road.jpg') no-repeat;
+  		background-size : cover;
+  		//border: 3px solid red;	
+  		//position : relative;
+  		//left:0px;
+  		//float: left;
+  		//margin : 100px;
+  		//padding : 100px;
+  		height : 500px;
+  		
+  		
+  		
+  	}
+  	
+  	#estimate{
+  		//border: 3px solid blue;
+  		position: relative;
+  		left:0px;
+  		float: left;
+  		width : 50%;
+  		height : 300px;
+  		
+  	}
+  	
+  	#map{
+  		//border: 3px solid green;
+  		float: left;
+  		height : 300px;
+  		width : 50%;
+  		
+  	}
+  	
+  	.formdiv{
+  		
+  		margin : 10px;
+  		padding : 10px;
+  		
+  	}
+  	
+  	.indiv{
+  		margin : 8px;
+  		padding : 0px;
+  		top: 200px;
+  		
+  	}
+  	
+  	.infoBookDiv{
+  		text-align: center
+  	}
+  	
+  	.t{
+  		top: 200px;
+  	}
 		
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -530,8 +592,13 @@ ul.citiesModalList li{
 	<script type="text/javascript">
 	
 			$(document).ready(function(){
+
+
 				
 				var username = '{{username}}';
+
+
+				console.log(username)
 
 
 				if (username == "guest"){
@@ -654,28 +721,60 @@ ul.citiesModalList li{
 					});
 	             	
 	             
+	             
+	             function detectBrowser() {
+		   			  var useragent = navigator.userAgent;
+		   			  var userinputdiv = document.getElementById("userinput");
+	
+		   			  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
+		   			    userinputdiv.style.width = '100%';
+		   			    userinputdivdiv.style.height = '100%';
+		   			  } else {
+		   			   
+		   			  }
+		   		}
+
+
+	   			detectBrowser();
+	   			
+	   			
+	   			var date_input=$('input[name="when"]'); //our date input has the name "date"
+				var options={
+			        format: 'yyyy-mm-dd',
+			        todayHighlight: true,
+			        autoclose: true,
+			        orientation: "auto"
+			      };
+
+			    date_input.datepicker(options);
+	             
 
 				
 			});
 			
+			
+		
 	</script>
 	
 	
-	<!--  <script type="text/javascript" src="{{url_for('static',filename='assets/js/app.js')}}" ></script>
-	 <script type="text/javascript" src="{{url_for('static',filename='assets/js/directives.js')}}" ></script>
+	<script type="text/javascript" src="{{url_for('static',filename='assets/js/app.js')}}" ></script>
+	 <!--<script type="text/javascript" src="{{url_for('static',filename='assets/js/directives.js')}}" ></script>-->
         <script type="text/javascript" src="{{url_for('static',filename='assets/js/services.js')}}" ></script>
-        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/loginController.js')}}" ></script>
+        <!--<script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/loginController.js')}}" ></script>
         <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/landingController.js')}}" ></script>        
-        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/socialLoginController.js')}}" ></script>        
-        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/mainActionController.js')}}" ></script> 
-    <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/orderContactController.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/socialLoginController.js')}}" ></script>  -->      
+        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/mainActionController.js')}}" ></script>
+   		<script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/orderContactController.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/orderBeginController.js')}}"></script>
-        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/orderArticleController.js')}}"></script>
-        <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myOrdersController.js')}}"></script>
+       	<script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/orderArticleController.js')}}"></script>
+       <!-- <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myOrdersController.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myContactController.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myTestimonialController.js')}}"></script>
         <script type="text/javascript" src="{{url_for('static',filename='assets/js/controllers/myProfileController.js')}}"></script>-->
-	
+        
+	<!-- Bootstrap Date-Picker Plugin -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 	
 	
 </head>

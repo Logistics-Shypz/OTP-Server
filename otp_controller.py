@@ -19,6 +19,10 @@ from django.contrib.messages.api import success
 import pika
 from model.User_OTP import User_OTP
 from shypzMessaging.shypzSender import ShypzSender
+import googlemaps
+from datetime import datetime
+from nltk.metrics import distance
+
 
 
 app = Flask(__name__)
@@ -33,11 +37,16 @@ url='http://localhost:5000/'
 
 backendserverurl = 'http://localhost:8080'
 
+booking_backendserver_url = 'http://localhost:8083'
+booking_approot = '/api/v1/'
+
 msg91portal_url = "https://control.msg91.com/api/sendhttp.php"
 
 smsutil = SMSUtil()
 
 shypzlogger = ShypzLogger().getShypzLogger()
+
+gmaps = googlemaps.Client(key='AIzaSyCV-p2cQJYytd8L-b4Gen2gvYrJg5xA4w8')
 
 """
 @app.route('/shypz',methods=['GET','POST'])
@@ -176,20 +185,31 @@ def account():
 	#print session['username']
 	return render_template('UserDashboard.html',username=session['username'])
 
-
+#api to track user booking history
 @app.route('/userbookings')
 def bookings():
 	#print session['username']
 	return render_template('Bookings.html',username=session['username'])
 
+
+@app.route('/orderbooking',methods=['POST','GET'])
+def order_booking():
+	print "in order bookingaction form"
+	if 'username' in session:
+		return render_template('mainActions.html',username=session['username'])
+	else:
+		return render_template('mainActions.html',username="guest")
+
+#api to show user booking form
 @app.route('/userbookingform',methods=['POST','GET'])
 def booking_form():
-	option_value = request.form['options']
-	print option_value;
+	print "In booking_form"
+	#option_value = request.form['options']
+	#print option_value;
 	if 'username' in session:
-		return render_template('booking.html',username=session['username'])
+		return render_template('order-begin.html',username=session['username'])
 	else:
-		return render_template('booking.html',username="guest")
+		return render_template('order-begin.html',username="guest")
 	
 @app.route('/bookinguserform')	
 def booking_userform():
@@ -221,9 +241,25 @@ def booking_address():
 		return render_template('booking-address.html',username=session['username'])
 	else:
 		return render_template('booking-address.html',username="guest")
+	
+	
+@app.route('/orderarticle')	
+def order_article():
+	print "in order article"
+	if 'username' in session:
+		return render_template('order-article.html',username=session['username'])
+	else:
+		return render_template('order-article.html',username="guest")
 		
 	#print request.form['options']
-	
+
+@app.route('/ordercontact')	
+def order_contact():
+	print "in order article"
+	if 'username' in session:
+		return render_template('order-contact.html',username=session['username'])
+	else:
+		return render_template('order-contact.html',username="guest")	
 
 
 @app.route('/logout')
@@ -272,6 +308,9 @@ def promotions():
 	return render_template('Promotions.html',username=session['username'])
 
 
+
+
+
 @app.route('/verifyotp',methods=['POST'])
 def verifyOTP():
 	otp = request.form['otp']
@@ -300,6 +339,74 @@ def genOTP(mobile):
 	#shypz_response = ShypzResponse(status=ResponseCodes.SUCCESS.value,data=ot,mimetype='application/json',content_type='application/json')
 	return jsonify(otp_response)
 
+@app.route('/server/session',methods=['GET'])
+def getServerSession():
+	if 'username' in session:
+		username = session['username']
+		return username
+	else:
+		username = "guest"
+		return username
+	
+@app.route('/orderSummary',methods=['GET'])	
+def order_summary():
+	if 'username' in session:
+		return render_template('OrderSummary.html',username=session['username'])
+	else:
+		return render_template('OrderSummary.html',username="guest")
+	
+@app.route('/orderBook',methods=['POST'])		
+def order_book():
+	print "In order book"
+	final_order_json = json.loads(request.data)
+	print final_order_json;
+	#print final_order_json
+	serv_post_booking_service = booking_backendserver_url + booking_approot + 'bookings'
+	booking_res = requests.post(serv_post_booking_service,json=final_order_json)
+	booking_json_response = booking_res.json()
+	return jsonify(booking_json_response)
+
+@app.route('/gmap')
+def getMap():
+	return render_template('google_nav_example.html')
+
+
+@app.route('/showBookingNav',methods=['GET'])
+def showBookingNavPage():
+	origin = request.args.get('from')
+	destination = request.args.get('to')
+	
+	print origin;
+	print destination;
+	if 'username' in session:
+		return render_template('booking-nav.html',username=session['username'],origins=origin,destinations=destination)
+	else:
+		return render_template('booking-nav.html',username="guest",origins=origin,destinations=destination)
+
+@app.route('/getDistance',methods=['GET','POST'])
+def getDistance():
+	print "In get distance"
+	
+	loc = json.loads(request.data)
+	
+	
+	origin = loc['from']
+	destination = loc['to']
+	
+	res = gmaps.distance_matrix(origin,destination)
+	
+	
+	
+	distance_response = {}
+	if res['status'] == "OK":
+		distance_response['distance'] = res['rows'][0]['elements'][0]['distance']['text']
+		distance_response['time'] = res['rows'][0]['elements'][0]['duration']['text']
+		distance_response['origin'] = origin
+		distance_response['destination'] = destination
+	
+	
+	return jsonify(distance_response)
+	
 
 
 

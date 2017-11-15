@@ -1,5 +1,6 @@
-myApp.controller('orderBeginController',['$scope','$rootScope','sharedOrderInfo',function($scope,$rootScope,sharedOrderInfo){
+bookingOrderApp.controller('orderBeginController',['$scope','$rootScope','sharedOrderInfo',function($scope,$rootScope,sharedOrderInfo){
     
+    console.log("In order begin controller")
     $scope.locationDetails = sharedOrderInfo.locationObj;
     
     $('#shiftingDatepicker').datepicker({
@@ -18,8 +19,11 @@ myApp.controller('orderBeginController',['$scope','$rootScope','sharedOrderInfo'
     $scope.locationDetails.destUnPacking = 'yes';
     $scope.locationDetails.sourceLoading = 'yes';
     $scope.locationDetails.destUnLoading = 'yes';
+    $scope.locationDetails.sourceElevator = 'yes';
+    $scope.locationDetails.destElevator = 'yes';
     
     $scope.continueArticlePage = function(){
+    	console.log($scope.locationDetails);
         //console.log($scope.locationDetails);
         sharedOrderInfo.sendLocationDet($scope.locationDetails);
     };

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo with google places API</title>
+	<meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+
+    	html,body{
+    		height: 100%;
+	        margin: 0;
+	        padding: 0;
+    	}
+    	
+    	#userinput{
+    		
+    		//background-color: #B76BA3; 
+    		background : url('../static/assets/images/logistics_shypz/truck_and_indian_road.jpg') no-repeat;
+    		background-size : cover;
+    		//border: 1px solid red;	
+    		//position : relative;
+    		//left:0px;
+    		//float: left;
+    		//margin : 100px;
+    		//padding : 100px;
+    		height : 500px;
+    		
+    		
+    		
+    	}
+    	
+    	#estimate{
+    		//border: 1px solid blue;
+    		position: relative;
+    		//margin : 100px;
+    		left:0px;
+    		float: left;
+    		width : 50%;
+    		height : 300px;
+    		//padding : 80px;
+    	}
+    	
+    	#map{
+    		//border: 1px solid red;
+    		//margin : 100px;
+    		float: left;
+    		height : 300px;
+    		width : 50%;
+    		
+    	}
+    	
+    	.formdiv{
+    		
+    		margin : 100px;
+    		padding : 100px;
+    		
+    	}
+    	
+    	.indiv{
+    		margin : 20px;
+    		padding : 20px;
+    		
+    	}
+    	
+    	.infoBookDiv{
+    		text-align: center
+    	}
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Date-Picker Plugin -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    
+
+</head>
+<body>
+
+
+
+	<div id="userinput" class="container-fluid">
+		
+		<form id="userform" class="form-inline formdiv">
+			
+			<div class="form-group-* input-group col-lg-3 indiv">
+				
+				<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+				<input id="from" type="text" name="from" placeholder="From" class="form-control input-lg"/>
+			</div>
+			<div class="form-group-* input-group col-lg-3 indiv">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+				<input id="to" type="text" name="to" placeholder="To" class="form-control input-lg"/>
+			</div>
+			<div class="form-group-* input-group col-lg-3 indiv">
+			
+				<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+				<input id="when" type="text" name="when" placeholder="When" class="form-control input-lg" />
+			</div>
+
+			<!--<div class="input-group date">
+			    <input type="text" class="form-control" value="12-02-2012">
+			    <div class="input-group-addon">
+			        <span class="glyphicon glyphicon-th"></span>
+			    </div>
+			</div>-->
+			<input id="submit" type="button" name="submitBtn" value="Submit" class="btn btn-primary btn-lg"/>
+
+		</form>
+
+	</div>
+	
+	
+	<div id="estimate" class="container-fluid">
+		 <div class="row">
+		    <div class="col-lg-12 panel panel-info">
+		    	<div class="panel-body infoBookDiv"><label for="Distance">Distance</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="est_dist"></span></div>
+		    </div>
+		  </div>
+		  
+		  <div class="row">
+		    <div class="col-lg-12 panel panel-info">
+		    	<div class="panel-body infoBookDiv"><label for="Time">Time</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="est_time"></span></div>
+		    </div>
+		  </div>
+		
+		  <div class="row">
+		    <div class="col-lg-12 panel panel-info">
+		    	<div class="panel-body infoBookDiv"><label for="Estimated Fare">Fare</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="est_fare"></span></div>
+		    </div>
+		  </div>
+		
+		
+		
+	</div>
+	
+	<div id="map">
+		
+	</div>
+
+
+	<script type="text/javascript">
+
+
+		
+		
+		$(document).ready(function(){
+
+			
+			function detectBrowser() {
+			  var useragent = navigator.userAgent;
+			  var userinputdiv = document.getElementById("userinput");
+
+			  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
+			    userinputdiv.style.width = '100%';
+			    userinputdivdiv.style.height = '100%';
+			  } else {
+			   
+			  }
+			}
+
+
+			detectBrowser();
+			
+			/*console.log(origin);
+			console.log(destination);
+			console.log(when);
+			
+			var google_base_api = "https://maps.googleapis.com/maps/api/distancematrix/json?";
+			var google_key = "AIzaSyCV-p2cQJYytd8L-b4Gen2gvYrJg5xA4w8";
+
+			var google_url = google_base_api + "units=metric" + "&" + "origins=" + origin + "&" + "destinations=" + destination + "&" + "key=" + google_key
+
+			console.log(google_url)
+			*/
+			/* $.get("/getDistance", function(data, status){
+		        alert("Data: " + data + "\nStatus: " + status);
+		      });*/
+
+			/*$("input[name='submitBtn']").on("click",function(){
+				console.log("button clicked");
+
+
+				origin = $("#from").val();
+				destination = $("#to").val();
+				when = $("#when").val();
+				
+				var form_val = $("#userform").serialize();
+				
+				
+				
+				console.log(form_val);
+
+				f_obj = {
+						
+					"from" : origin,
+					"to" : destination
+				}
+				
+				var service = new google.maps.DistanceMatrixService;
+
+
+				
+				
+			      
+				$.ajax({
+		            url: '/getDistance',
+		            data: JSON.stringify(f_obj),
+		            type: 'POST',
+		            contentType:"json",
+		            success: function (data) {
+		               console.log(data);
+		               
+		               $("#est_dist").text(data['distance'])
+		               $("#est_time").text(data['time'])
+		               $("#est_fare").text(30000)
+		               
+		            },
+		            error: function(error) {
+		                console.log(error);
+		            }	            
+		        });
+			      
+			      
+			     
+			      
+			      
+
+
+					
+			});*/
+
+			var date_input=$('input[name="when"]'); //our date input has the name "date"
+			var options={
+		        format: 'yyyy-mm-dd',
+		        todayHighlight: true,
+		        autoclose: true,
+		        orientation: "auto"
+		      };
+
+		    date_input.datepicker(options);
+
+
+			/*$("input[name='from']").on("keyup",function(){
+				var from = $("#from").val();
+				var geocoder = new google.maps.Geocoder();
+				console.log(from);
+				var srcmarker = new google.maps.Marker({
+			          position: from,
+			          map: map
+			        });
+			});*/
+		});
+
+		function activateFromPlacesSearch(){
+
+			var input = document.getElementById('from');
+			var autocomplete = new google.maps.places.Autocomplete(input);
+
+			autocomplete.addListener('place_changed',function(){
+				var place = autocomplete.getPlace();
+				console.log(place);
+
+			});
+			/*
+			autocomplete.bindTo('bounds', map);
+			var infowindow = new google.maps.InfoWindow();
+			var infowindowContent = document.getElementById('infowindow-content');
+	        infowindow.setContent(infowindowContent);
+	        var marker = new google.maps.Marker({
+	          map: map,
+	          anchorPoint: new google.maps.Point(0, -29)
+	        });
+			
+			autocomplete.addListener('place_changed', function() {
+				
+				var place = autocomplete.getPlace();
+				console.log(place);
+				
+				
+			});*/
+			
+			
+			
+		}
+
+		function activateToPlacesSearch(){
+
+			var input1 = document.getElementById('to');
+			var autocomplete1 = new google.maps.places.Autocomplete(input1);
+		}
+		
+		function initMap(){
+			
+			var init_location = {
+			           center: {lat: 20.5937, lng: 78.9629},
+			           zoom: 8
+
+			        };
+			
+			map = new google.maps.Map(document.getElementById('map'), init_location);
+			var directionsService = new google.maps.DirectionsService;
+		    var directionsDisplay = new google.maps.DirectionsRenderer;
+
+		    directionsDisplay.setMap(map);
+		    
+		    var geocoder = new google.maps.Geocoder;
+	        var distancematrixservice = new google.maps.DistanceMatrixService;
+		    var bounds = new google.maps.LatLngBounds;
+		    
+		    
+
+		    var onChangeHandler = function() {
+		          calculateAndDisplayRoute(directionsService, directionsDisplay);
+		          calculateDistance(distancematrixservice,geocoder);
+		        };
+
+
+	        //document.getElementById('from').addEventListener('change', onChangeHandler);
+	        //document.getElementById('to').addEventListener('change', onChangeHandler);
+	        document.getElementById('submit').addEventListener('click',onChangeHandler);
+			
+			
+		}
+
+
+		 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+	        directionsService.route({
+	          origin: document.getElementById('from').value,
+	          destination: document.getElementById('to').value,
+	          travelMode: 'DRIVING'
+	        }, function(response, status) {
+	          if (status === 'OK') {
+	            directionsDisplay.setDirections(response);
+	          } else {
+	            window.alert('Directions request failed due to ' + status);
+	          }
+	        });
+      	}
+		 
+		 
+		 function calculateDistance(distancematrixservice,geocoder){
+			 
+			 distancematrixservice.getDistanceMatrix({
+				 origins : [document.getElementById('from').value],
+				 destinations : [document.getElementById('to').value],
+				 travelMode: 'DRIVING',
+		          unitSystem: google.maps.UnitSystem.METRIC,
+		          avoidHighways: false,
+		          avoidTolls: false
+			 },function(response,status){
+				 	  if (status !== 'OK') {
+			            alert('Error was: ' + status);
+			          }else{
+			        	  
+			        	  var base_price = 300;
+			        	  var base_km = 5;
+			        	  var price_per_km = 50;
+			        	  
+			        	  var distance = response.rows[0].elements[0].distance.text;
+			        	  var time = response.rows[0].elements[0].duration.text;
+			        	  document.getElementById('est_dist').innerHTML = distance;
+			        	  document.getElementById('est_time').innerHTML = time;
+			        	  
+			        	  var distance_in_m = response.rows[0].elements[0].distance.value;
+			        	  
+			        	  
+			        	  var distance_in_km = Math.round((distance_in_m/1000));
+			        	  var remaining_distance = distance_in_km - base_km;
+			        	  //console.log(distance_in_km);
+			        	  var final_price = base_price + ( remaining_distance * price_per_km);
+			        	  
+			        	  
+			        	  
+			        	  
+			        	  
+			        	  document.getElementById('est_fare').innerHTML = final_price;
+			          }
+				 
+			 })
+		 }
+
+
+
+		function activatePlacesSearch(){
+			activateFromPlacesSearch();
+			activateToPlacesSearch();
+			
+			initMap();
+
+			
+
+		}
+		
+	</script>
+
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV-p2cQJYytd8L-b4Gen2gvYrJg5xA4w8&libraries=places&callback=activatePlacesSearch"></script>
+	
+
+
+</body>
+</html>

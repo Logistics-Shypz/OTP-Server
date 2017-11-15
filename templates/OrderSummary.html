@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+<body>
+
+    {% include 'navigation.html'%}
+    
+    
+	<div class="container-fluid" style="margin-top:0px;height:500px;">
+		Your Booking Order is confirmed and the Order Number is :
+		
+		 <input type="text" id="order_conf"/>
+		
+		
+	</div>
+	
+	
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			
+			
+			
+			var sh_bk_final_order = sessionStorage.getItem('tempSessObj');
+			
+			//var sh_bk_final_order = JSON.parse(sh_bk_final_order_str);
+			
+			console.log("In OrderSummary Page")
+			var final_order = JSON.parse(sh_bk_final_order)
+			//console.log(sh_bk_final_order);
+			
+			var user_guest = final_order["userDet"]["userDetails"]["uname"]
+			
+			if(user_guest == "guest"){
+				
+				var guest_counter = (function () {
+				    var counter = 0;
+				    return function () {return counter += 1;}
+				})();
+				
+				console.log(guest_counter());
+			}
+			
+			booking_json_obj = {
+					"userType" : final_order["userDet"]["userDetails"]["uname"],
+					"userSourceLocation" : final_order['locationDet']['sourceCity'],
+					"userDestinationLocation" : final_order['locationDet']['destinationCity'],
+					"userTimeToShift" : final_order['locationDet']['shiftingDate'],
+					"userSourcePropertyType": final_order['locationDet']['sourcePropType'],
+					"userDestinationPropertyType": final_order['locationDet']['destPropType'],
+					"userSourcePropertyFloorNum" : final_order['locationDet']['sourceFloorNum'],
+					"userDestinationPropertyFloorNum" : final_order['locationDet']['destFloorNum'],
+					"userPropertyIsPackingRequiredSource" : final_order['locationDet']['sourcePacking'],
+					"userPropertyIsLoadingRequiredSource" :	final_order['locationDet']['sourceLoading'],
+					"userPropertyIsElevatorAvailableSource" : final_order['locationDet']['sourceElevator'],
+					"userPropertyIsUnpackingRequiredDestination" : final_order['locationDet']['destUnPacking'],
+					"userPropertyIsUnloadingRequiredDestination" : final_order['locationDet']['destUnLoading'],
+					"userPropertyIsElevatorRequiredDestination" : final_order['locationDet']['destElevator'],
+					"userId" : 1
+			};
+			
+			
+			//console.log(JSON.stringify(booking_json_obj));
+			
+			
+			/*$.post('/orderBook',sh_bk_final_order,function(result){
+				
+				console.log(result);
+				
+				if(result == "order"){
+					$('#order_conf').text("order placed");
+				}
+				
+			});*/
+			
+			/*$.ajax({
+                url: '/',
+                data: data,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                success: function(data) {
+                    $('#facts').hide();
+                    var metadata_rows = "";
+                    metadata_parsed = JSON.parse(data["metadata_json"]);
+                    schema_parsed = JSON.parse(data["schema_json"]);
+                    console.log(metadata_parsed);
+                    if (metadata_parsed.length > 0) {
+                        $('#metadata_header').empty();
+                        for (var each_row = 0; each_row < Object.keys(metadata_parsed).length; each_row++) {
+                            for (key in metadata_parsed[each_row]) {
+                                if (key != '_id') {
+                                    var row_value=(metadata_parsed[each_row][key]).toString();
+                                    var row_val=row_value.trim();
+                                    metadata_rows = metadata_rows + '<tr><th>' + key + '</th><td>' + row_val + '</td></tr>';
+                                }
+
+                            }
+                        }
+                        $('#tab_header').show();
+                        $('#metadata_header').append(metadata_rows);
+                        $(".tree_menu").css({'height':($(".map").height()+'px')});
+                    }*/
+			
+			$.ajax({
+	            url: '/orderBook',
+	            data: JSON.stringify(booking_json_obj),
+	            type: 'POST',
+	            contentType: "application/json; charset=utf-8",
+	            success: function (data) {
+	                console.log(data['booking_quote_id']);
+	                
+	                $('#order_conf').val(data['booking_quote_id'])
+	            },
+	            error: function(error) {
+	                console.log(error);
+	            }	            
+	        });
+			
+		});
+		
+	
+	</script>
+{% include 'footer.html' %}
+    
+</body>
+</html>

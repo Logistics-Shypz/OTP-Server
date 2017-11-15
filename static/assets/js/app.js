@@ -1,15 +1,26 @@
-'use strict';
-var myApp = angular.module('myApp',['ui.router','ui.bootstrap']);
+//'use strict';
+var myApp = angular.module('myApp',['ui.router']);
+var bookingOrderApp = angular.module('bookingOrderApp', ["ngAnimate","ui.router"]);
 
-myApp.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
-    $urlRouterProvider.otherwise('/');
+/*myApp.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
+	 $stateProvider
+	 .state('order_article',{           
+         url: '/order-article',
+         templateUrl: "{{url_for('order_article')}}"      
+      })
+  .state('order_contact',{           
+         url: '/order-contact',
+         templateUrl: "static/partials/order-contact.html"     
+      })*/
+	
+    /*$urlRouterProvider.otherwise('/');
     $stateProvider
-    /*.state('home', {
+    .state('home', {
             url: '/',
             templateUrl : "static/partials/landing.html",
             controller : 'landingController'
         })*/
-    .state('order_begin', {
+    /*.state('order_begin', {
             url: '/order-begin',
             templateUrl: "static/partials/order-begin.html"
         })
@@ -43,8 +54,8 @@ myApp.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
             url: '/my-testimonials',
            templateUrl: "static/partials/my-testimonials.html"
     });
-    $locationProvider.html5Mode(true);
-});
+    $locationProvider.html5Mode(true);*/
+//});
 /*
 var app = angular.module("UserDashboardApp", ["ngRoute"]);
       app.config(function($routeProvider) {

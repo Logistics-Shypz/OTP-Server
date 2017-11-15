@@ -1,9 +1,12 @@
-myApp.controller('orderArticleController',['$scope','$rootScope','sharedOrderInfo','getServices',function($scope,$rootScope,sharedOrderInfo,getServices){
+bookingOrderApp.controller('orderArticleController',['$scope','$rootScope','sharedOrderInfo','getServices',function($scope,$rootScope,sharedOrderInfo,getServices){
     
+	
+	console.log("in order article controller");
     //Call Articles Data from items Service
     var callArticlesData = getServices.getData('http://localhost:8082/api/v1/items');
     callArticlesData.then(function(result){
        $scope.articlesData = result; 
+       console.log($scope.articlesData);
     });
     
     
@@ -11,8 +14,11 @@ myApp.controller('orderArticleController',['$scope','$rootScope','sharedOrderInf
     $scope.orderArticleDetails = sharedOrderInfo.articleObj;    
     
     
+    
+    
     //Proceed to Contact Details Page
     $scope.proceedContact = function(){
+    	console.log($scope.orderArticleDetails);
         sharedOrderInfo.sendArticleDet($scope.orderArticleDetails);
     };
     

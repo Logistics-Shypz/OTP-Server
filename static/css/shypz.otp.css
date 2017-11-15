@@ -60,7 +60,7 @@ a.loginContBtns span,a.userNav span{font-size: 1.25em;}
 .servicesList li{font-size: 1em;font-weight: normal;/*background:url('../images/servicesListBg.jpg') left center no-repeat;*/padding: 0.5em 0 0.5em 1em;}
 
 /*=============== Order Content ====================*/
-.orderContent{background: url('/static/assets/images/bg_custom.png') repeat;}
+/*.orderContent{background: url('/static/assets/images/bg_custom.png') repeat;}*/
 .orderFormContent{}   
 .orderHeader{background-color:#fff;width:90%;margin:0 auto;}
 .orderFormContent h3{text-align: center;color: #808080;}   

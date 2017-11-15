@@ -1,7 +1,7 @@
 <div class="orderContent">
-    <app-header></app-header>
+    
     <div class="container orderFormContent clearfix" ng-controller='orderContactController'>
-        <div class="orderHeader clearfix">            
+       <!--  <div class="orderHeader clearfix">            
             <div class="orderIcons clearfix">
                 <div class="orderStatusIcon green">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
@@ -33,7 +33,7 @@
                     Enter contact details      
                 </div>
             </div>
-        </div> 
+        </div> -->
         
         <div class="orderStep3 orderSteps clearfix">
             <form name="orderStep3">
@@ -48,7 +48,7 @@
                         <div class="row">
                             <p><input type="text" placeholder="Origin Address Line1" ng-model="contactDetails.contactOrigAddr1" class="form-control" required></p>
                             <p><input type="text" placeholder="Origin Address Line2" ng-model="contactDetails.contactOrigAddr2" class="form-control" required></p>
-                            <p><input type="text" placeholder="Origin City" disabled ng-model="contactDetails.contactOrigCity" class="form-control" ></p>
+                            <p><input type="text" placeholder="Origin City" ng-model="contactDetails.contactOrigCity" class="form-control" ></p>
                             <p><input type="text" placeholder="Origin State" ng-model="contactDetails.contactOrigState" class="form-control" required></p>
                             <p><input type="text" placeholder="Origin Zip/Postal Code" ng-model="contactDetails.contactOrigZip" class="form-control" required></p>
                             <p><input type="text" placeholder="Landmark" ng-model="contactDetails.contactOrigLandmark" class="form-control" required></p>
@@ -60,7 +60,7 @@
                         <div class="row">
                             <p><input type="text" placeholder="Destination Address Line1" ng-model="contactDetails.contactDestAddr1" class="form-control" required></p>
                             <p><input type="text" placeholder="Destination Address Line2" ng-model="contactDetails.contactDestAddr2" class="form-control" required></p>
-                            <p><input type="text" placeholder="Destination City" disabled ng-model="contactDetails.contactDestCity" class="form-control" ></p>
+                            <p><input type="text" placeholder="Destination City" ng-model="contactDetails.contactDestCity" class="form-control" ></p>
                             <p><input type="text" placeholder="Destination State" ng-model="contactDetails.contactDestState" class="form-control" required></p>
                             <p><input type="text" placeholder="Destination Zip/Postal Code" ng-model="contactDetails.contactDestZip" class="form-control" required></p>
                             <p><input type="text" placeholder="Landmark" ng-model="contactDetails.contactDestLandmark" class="form-control" required></p>
@@ -83,5 +83,5 @@
             </form>
         </div>
     </div>
-    <app-footer></app-footer>
+    
 </div>
